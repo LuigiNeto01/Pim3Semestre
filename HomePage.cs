@@ -17,6 +17,11 @@ namespace Pim3Semestre
             InitializeComponent();
         }
 
+        private void HomePage_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
 

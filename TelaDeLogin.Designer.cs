@@ -30,11 +30,11 @@
         {
             UserTxBx = new TextBox();
             panel1 = new Panel();
+            CPFTxBx = new MaskedTextBox();
             lblCPF = new Label();
             lblEmail = new Label();
             label2 = new Label();
             label1 = new Label();
-            CPFTxBx = new TextBox();
             EmailTxBx = new TextBox();
             BtnRegistro = new Button();
             BtnLogin = new Button();
@@ -53,22 +53,32 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlLight;
+            panel1.Controls.Add(CPFTxBx);
             panel1.Controls.Add(lblCPF);
             panel1.Controls.Add(lblEmail);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(CPFTxBx);
             panel1.Controls.Add(EmailTxBx);
             panel1.Controls.Add(BtnRegistro);
             panel1.Controls.Add(BtnLogin);
             panel1.Controls.Add(TextoLogin);
             panel1.Controls.Add(PassWordTxBx);
             panel1.Controls.Add(UserTxBx);
+            panel1.Dock = DockStyle.Right;
             panel1.ImeMode = ImeMode.NoControl;
-            panel1.Location = new Point(602, -2);
+            panel1.Location = new Point(603, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(364, 600);
+            panel1.Size = new Size(364, 598);
             panel1.TabIndex = 0;
+            // 
+            // CPFTxBx
+            // 
+            CPFTxBx.Location = new Point(46, 418);
+            CPFTxBx.Mask = "000.000.000-00";
+            CPFTxBx.Name = "CPFTxBx";
+            CPFTxBx.Size = new Size(282, 23);
+            CPFTxBx.TabIndex = 4;
+            CPFTxBx.Visible = false;
             // 
             // lblCPF
             // 
@@ -111,14 +121,6 @@
             label1.Size = new Size(101, 15);
             label1.TabIndex = 7;
             label1.Text = "Nome de usuario";
-            // 
-            // CPFTxBx
-            // 
-            CPFTxBx.Location = new Point(45, 418);
-            CPFTxBx.Name = "CPFTxBx";
-            CPFTxBx.Size = new Size(283, 23);
-            CPFTxBx.TabIndex = 4;
-            CPFTxBx.Visible = false;
             // 
             // EmailTxBx
             // 
@@ -197,11 +199,11 @@
         private Label TextoLogin;
         private TextBox PassWordTxBx;
         private Button BtnRegistro;
-        private TextBox CPFTxBx;
         private TextBox EmailTxBx;
         private Label label1;
         private Label lblCPF;
         private Label lblEmail;
         private Label label2;
+        private MaskedTextBox CPFTxBx;
     }
 }

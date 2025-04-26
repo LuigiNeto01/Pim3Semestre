@@ -35,7 +35,8 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1227, 634);
-            FormBorderStyle = FormBorderStyle.None;
+            Cursor = Cursors.Default;
+            FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Name = "HomePage";
             Text = "Página Inicial";
             Load += Form1_Load;
