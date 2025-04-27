@@ -180,7 +180,7 @@
             BackColor = SystemColors.ControlDark;
             ClientSize = new Size(967, 598);
             Controls.Add(panel1);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "TelaDeLogin";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;

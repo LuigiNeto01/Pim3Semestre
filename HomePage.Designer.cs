@@ -28,21 +28,486 @@
         /// </summary>
         private void InitializeComponent()
         {
+            panel1 = new Panel();
+            button5 = new Button();
+            lblBemVindo = new Label();
+            btnLogoff = new Button();
+            BtnCriarUsuario = new Button();
+            button2 = new Button();
+            btnEditarPerfil = new Button();
+            tabControl1 = new TabControl();
+            Inicio = new TabPage();
+            tabEditarPerfil = new TabPage();
+            panel2 = new Panel();
+            label1 = new Label();
+            btnSalvar = new Button();
+            txbxCPF = new MaskedTextBox();
+            txbxEmail = new TextBox();
+            txbxSenha = new TextBox();
+            txbxNomeUsuario = new TextBox();
+            tabNovoChamado = new TabPage();
+            PnlHelp = new Panel();
+            EnviarChamadoPadrao = new Button();
+            txbxSugestao = new TextBox();
+            lblsubTitulo = new Label();
+            lblRespostaIA = new Label();
+            panel3 = new Panel();
+            btnEnviarChamado = new Button();
+            lblPrioridade = new Label();
+            cmbxPrioridade = new ComboBox();
+            txbxDescr = new TextBox();
+            lblDescr = new Label();
+            txbxTitulo = new TextBox();
+            Titulo = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            comboBox1 = new ComboBox();
+            panel1.SuspendLayout();
+            tabControl1.SuspendLayout();
+            tabEditarPerfil.SuspendLayout();
+            panel2.SuspendLayout();
+            tabNovoChamado.SuspendLayout();
+            PnlHelp.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ActiveBorder;
+            panel1.Controls.Add(button5);
+            panel1.Controls.Add(lblBemVindo);
+            panel1.Controls.Add(btnLogoff);
+            panel1.Controls.Add(BtnCriarUsuario);
+            panel1.Controls.Add(button2);
+            panel1.Controls.Add(btnEditarPerfil);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(293, 634);
+            panel1.TabIndex = 0;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.Transparent;
+            button5.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            button5.Location = new Point(12, 397);
+            button5.Name = "button5";
+            button5.Size = new Size(260, 44);
+            button5.TabIndex = 5;
+            button5.Text = "Criar chamado";
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
+            // 
+            // lblBemVindo
+            // 
+            lblBemVindo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            lblBemVindo.AutoSize = true;
+            lblBemVindo.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblBemVindo.ImageAlign = ContentAlignment.TopCenter;
+            lblBemVindo.Location = new Point(21, 150);
+            lblBemVindo.MaximumSize = new Size(260, 80);
+            lblBemVindo.Name = "lblBemVindo";
+            lblBemVindo.Size = new Size(129, 32);
+            lblBemVindo.TabIndex = 4;
+            lblBemVindo.Text = "Bem vindo";
+            lblBemVindo.TextAlign = ContentAlignment.TopCenter;
+            lblBemVindo.Click += lblBemVindo_Click;
+            // 
+            // btnLogoff
+            // 
+            btnLogoff.BackColor = Color.Transparent;
+            btnLogoff.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnLogoff.ImageAlign = ContentAlignment.BottomCenter;
+            btnLogoff.Location = new Point(12, 561);
+            btnLogoff.Name = "btnLogoff";
+            btnLogoff.Size = new Size(260, 44);
+            btnLogoff.TabIndex = 3;
+            btnLogoff.Text = "Deslogar";
+            btnLogoff.UseVisualStyleBackColor = false;
+            btnLogoff.Click += button4_Click;
+            // 
+            // BtnCriarUsuario
+            // 
+            BtnCriarUsuario.BackColor = Color.Transparent;
+            BtnCriarUsuario.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            BtnCriarUsuario.Location = new Point(12, 480);
+            BtnCriarUsuario.Name = "BtnCriarUsuario";
+            BtnCriarUsuario.Size = new Size(260, 44);
+            BtnCriarUsuario.TabIndex = 2;
+            BtnCriarUsuario.Text = "Criar usuário";
+            BtnCriarUsuario.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.Transparent;
+            button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            button2.Location = new Point(12, 311);
+            button2.Name = "button2";
+            button2.Size = new Size(260, 44);
+            button2.TabIndex = 1;
+            button2.Text = "Meus chamados";
+            button2.UseVisualStyleBackColor = false;
+            // 
+            // btnEditarPerfil
+            // 
+            btnEditarPerfil.BackColor = Color.Transparent;
+            btnEditarPerfil.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnEditarPerfil.Location = new Point(12, 233);
+            btnEditarPerfil.Name = "btnEditarPerfil";
+            btnEditarPerfil.Size = new Size(260, 44);
+            btnEditarPerfil.TabIndex = 0;
+            btnEditarPerfil.Text = "Editar perfil";
+            btnEditarPerfil.UseVisualStyleBackColor = false;
+            btnEditarPerfil.Click += button1_Click;
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(Inicio);
+            tabControl1.Controls.Add(tabEditarPerfil);
+            tabControl1.Controls.Add(tabNovoChamado);
+            tabControl1.Dock = DockStyle.Left;
+            tabControl1.Location = new Point(293, 0);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(934, 634);
+            tabControl1.TabIndex = 1;
+            // 
+            // Inicio
+            // 
+            Inicio.Location = new Point(4, 24);
+            Inicio.Name = "Inicio";
+            Inicio.Padding = new Padding(3);
+            Inicio.Size = new Size(926, 606);
+            Inicio.TabIndex = 0;
+            Inicio.Text = "Página inicial";
+            Inicio.UseVisualStyleBackColor = true;
+            // 
+            // tabEditarPerfil
+            // 
+            tabEditarPerfil.Controls.Add(panel2);
+            tabEditarPerfil.Location = new Point(4, 24);
+            tabEditarPerfil.Name = "tabEditarPerfil";
+            tabEditarPerfil.Padding = new Padding(3);
+            tabEditarPerfil.Size = new Size(926, 606);
+            tabEditarPerfil.TabIndex = 1;
+            tabEditarPerfil.Text = "Editar Perfil";
+            tabEditarPerfil.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.Honeydew;
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(btnSalvar);
+            panel2.Controls.Add(txbxCPF);
+            panel2.Controls.Add(txbxEmail);
+            panel2.Controls.Add(txbxSenha);
+            panel2.Controls.Add(txbxNomeUsuario);
+            panel2.Location = new Point(52, 58);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(399, 508);
+            panel2.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(30, 42);
+            label1.Name = "label1";
+            label1.Size = new Size(150, 32);
+            label1.TabIndex = 6;
+            label1.Text = "Editar perfil";
+            // 
+            // btnSalvar
+            // 
+            btnSalvar.Location = new Point(243, 443);
+            btnSalvar.Name = "btnSalvar";
+            btnSalvar.Size = new Size(124, 43);
+            btnSalvar.TabIndex = 5;
+            btnSalvar.Text = "Salvar dados";
+            btnSalvar.UseVisualStyleBackColor = true;
+            btnSalvar.Click += btnSalvar_Click;
+            // 
+            // txbxCPF
+            // 
+            txbxCPF.Location = new Point(30, 296);
+            txbxCPF.Mask = "000.000.000-00";
+            txbxCPF.Name = "txbxCPF";
+            txbxCPF.ReadOnly = true;
+            txbxCPF.Size = new Size(337, 23);
+            txbxCPF.TabIndex = 4;
+            // 
+            // txbxEmail
+            // 
+            txbxEmail.Location = new Point(30, 229);
+            txbxEmail.Name = "txbxEmail";
+            txbxEmail.Size = new Size(337, 23);
+            txbxEmail.TabIndex = 2;
+            // 
+            // txbxSenha
+            // 
+            txbxSenha.Location = new Point(30, 165);
+            txbxSenha.Name = "txbxSenha";
+            txbxSenha.Size = new Size(337, 23);
+            txbxSenha.TabIndex = 1;
+            // 
+            // txbxNomeUsuario
+            // 
+            txbxNomeUsuario.Location = new Point(30, 100);
+            txbxNomeUsuario.Name = "txbxNomeUsuario";
+            txbxNomeUsuario.Size = new Size(337, 23);
+            txbxNomeUsuario.TabIndex = 0;
+            // 
+            // tabNovoChamado
+            // 
+            tabNovoChamado.Controls.Add(PnlHelp);
+            tabNovoChamado.Controls.Add(panel3);
+            tabNovoChamado.Location = new Point(4, 24);
+            tabNovoChamado.Name = "tabNovoChamado";
+            tabNovoChamado.Padding = new Padding(3);
+            tabNovoChamado.Size = new Size(926, 606);
+            tabNovoChamado.TabIndex = 2;
+            tabNovoChamado.Text = "Novo chamado";
+            tabNovoChamado.UseVisualStyleBackColor = true;
+            // 
+            // PnlHelp
+            // 
+            PnlHelp.BackColor = SystemColors.ActiveBorder;
+            PnlHelp.Controls.Add(EnviarChamadoPadrao);
+            PnlHelp.Controls.Add(txbxSugestao);
+            PnlHelp.Controls.Add(lblsubTitulo);
+            PnlHelp.Controls.Add(lblRespostaIA);
+            PnlHelp.Location = new Point(463, 11);
+            PnlHelp.Name = "PnlHelp";
+            PnlHelp.Size = new Size(427, 587);
+            PnlHelp.TabIndex = 10;
+            PnlHelp.Visible = false;
+            // 
+            // EnviarChamadoPadrao
+            // 
+            EnviarChamadoPadrao.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            EnviarChamadoPadrao.Location = new Point(242, 515);
+            EnviarChamadoPadrao.Name = "EnviarChamadoPadrao";
+            EnviarChamadoPadrao.Size = new Size(139, 55);
+            EnviarChamadoPadrao.TabIndex = 13;
+            EnviarChamadoPadrao.Text = "Sim, enviar chamado";
+            EnviarChamadoPadrao.UseVisualStyleBackColor = true;
+            EnviarChamadoPadrao.Click += EnviarChamadoPadrao_Click;
+            // 
+            // txbxSugestao
+            // 
+            txbxSugestao.Enabled = false;
+            txbxSugestao.Font = new Font("Segoe UI Emoji", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txbxSugestao.Location = new Point(44, 135);
+            txbxSugestao.Multiline = true;
+            txbxSugestao.Name = "txbxSugestao";
+            txbxSugestao.Size = new Size(337, 257);
+            txbxSugestao.TabIndex = 12;
+            txbxSugestao.Visible = false;
+            // 
+            // lblsubTitulo
+            // 
+            lblsubTitulo.AutoSize = true;
+            lblsubTitulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblsubTitulo.Location = new Point(44, 85);
+            lblsubTitulo.Name = "lblsubTitulo";
+            lblsubTitulo.Size = new Size(145, 25);
+            lblsubTitulo.TabIndex = 11;
+            lblsubTitulo.Text = "Você ja tentou...";
+            lblsubTitulo.Visible = false;
+            // 
+            // lblRespostaIA
+            // 
+            lblRespostaIA.AutoSize = true;
+            lblRespostaIA.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblRespostaIA.Location = new Point(44, 25);
+            lblRespostaIA.Name = "lblRespostaIA";
+            lblRespostaIA.Size = new Size(337, 40);
+            lblRespostaIA.TabIndex = 10;
+            lblRespostaIA.Text = "Resposta gerada por IA";
+            lblRespostaIA.Visible = false;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = SystemColors.ActiveBorder;
+            panel3.Controls.Add(btnEnviarChamado);
+            panel3.Controls.Add(lblPrioridade);
+            panel3.Controls.Add(cmbxPrioridade);
+            panel3.Controls.Add(txbxDescr);
+            panel3.Controls.Add(lblDescr);
+            panel3.Controls.Add(txbxTitulo);
+            panel3.Controls.Add(Titulo);
+            panel3.Controls.Add(label3);
+            panel3.Controls.Add(label2);
+            panel3.Controls.Add(comboBox1);
+            panel3.Location = new Point(8, 11);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(427, 587);
+            panel3.TabIndex = 1;
+            panel3.Paint += panel3_Paint;
+            // 
+            // btnEnviarChamado
+            // 
+            btnEnviarChamado.Font = new Font("Segoe UI Black", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEnviarChamado.Location = new Point(70, 501);
+            btnEnviarChamado.Name = "btnEnviarChamado";
+            btnEnviarChamado.Size = new Size(299, 58);
+            btnEnviarChamado.TabIndex = 9;
+            btnEnviarChamado.Text = "Abrir chamado";
+            btnEnviarChamado.UseVisualStyleBackColor = true;
+            btnEnviarChamado.Click += btnEnviarChamado_Click;
+            // 
+            // lblPrioridade
+            // 
+            lblPrioridade.AutoSize = true;
+            lblPrioridade.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPrioridade.Location = new Point(70, 431);
+            lblPrioridade.Name = "lblPrioridade";
+            lblPrioridade.Size = new Size(221, 25);
+            lblPrioridade.TabIndex = 8;
+            lblPrioridade.Text = "Prioridade do chamado";
+            lblPrioridade.Visible = false;
+            // 
+            // cmbxPrioridade
+            // 
+            cmbxPrioridade.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbxPrioridade.FormattingEnabled = true;
+            cmbxPrioridade.Items.AddRange(new object[] { "Baixo", "Médio", "Alto", "Crítico" });
+            cmbxPrioridade.Location = new Point(70, 459);
+            cmbxPrioridade.Name = "cmbxPrioridade";
+            cmbxPrioridade.Size = new Size(299, 23);
+            cmbxPrioridade.TabIndex = 7;
+            cmbxPrioridade.Visible = false;
+            // 
+            // txbxDescr
+            // 
+            txbxDescr.Location = new Point(70, 291);
+            txbxDescr.Multiline = true;
+            txbxDescr.Name = "txbxDescr";
+            txbxDescr.Size = new Size(299, 119);
+            txbxDescr.TabIndex = 6;
+            txbxDescr.Visible = false;
+            // 
+            // lblDescr
+            // 
+            lblDescr.AutoSize = true;
+            lblDescr.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDescr.Location = new Point(70, 263);
+            lblDescr.Name = "lblDescr";
+            lblDescr.Size = new Size(212, 25);
+            lblDescr.TabIndex = 5;
+            lblDescr.Text = "Descrição do chamado";
+            lblDescr.Visible = false;
+            // 
+            // txbxTitulo
+            // 
+            txbxTitulo.Location = new Point(70, 126);
+            txbxTitulo.Name = "txbxTitulo";
+            txbxTitulo.Size = new Size(299, 23);
+            txbxTitulo.TabIndex = 4;
+            // 
+            // Titulo
+            // 
+            Titulo.AutoSize = true;
+            Titulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Titulo.Location = new Point(70, 98);
+            Titulo.Name = "Titulo";
+            Titulo.Size = new Size(64, 25);
+            Titulo.TabIndex = 3;
+            Titulo.Text = "Titulo";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(70, 184);
+            label3.Name = "label3";
+            label3.Size = new Size(191, 25);
+            label3.TabIndex = 2;
+            label3.Text = "Motivo do chamado";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(70, 25);
+            label2.Name = "label2";
+            label2.Size = new Size(299, 40);
+            label2.TabIndex = 1;
+            label2.Text = "Abrir chamado novo";
+            // 
+            // comboBox1
+            // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Problemas com o mouse", "Problemas com som", "Problema com vídeo", "Problemas com a internet", "Outros" });
+            comboBox1.Location = new Point(70, 212);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(299, 23);
+            comboBox1.TabIndex = 0;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // HomePage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1227, 634);
-            Cursor = Cursors.Default;
-            FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            ClientSize = new Size(1225, 634);
+            Controls.Add(tabControl1);
+            Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "HomePage";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Página Inicial";
             Load += Form1_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            tabControl1.ResumeLayout(false);
+            tabEditarPerfil.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            tabNovoChamado.ResumeLayout(false);
+            PnlHelp.ResumeLayout(false);
+            PnlHelp.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Panel panel1;
+        private Button btnLogoff;
+        private Button BtnCriarUsuario;
+        private Button button2;
+        private Button btnEditarPerfil;
+        private Label lblBemVindo;
+        private TabControl tabControl1;
+        private TabPage Inicio;
+        private TabPage tabEditarPerfil;
+        private TextBox txbxNomeUsuario;
+        private Panel panel2;
+        private TextBox txbxEmail;
+        private TextBox txbxSenha;
+        private MaskedTextBox txbxCPF;
+        private Button button5;
+        private Label label1;
+        private Button btnSalvar;
+        private TabPage tabNovoChamado;
+        private ComboBox comboBox1;
+        private Panel panel3;
+        private Label label2;
+        private TextBox txbxDescr;
+        private Label lblDescr;
+        private TextBox txbxTitulo;
+        private Label Titulo;
+        private Label label3;
+        private Button btnEnviarChamado;
+        private Label lblPrioridade;
+        private ComboBox cmbxPrioridade;
+        private Panel PnlHelp;
+        private Button EnviarChamadoPadrao;
+        private TextBox txbxSugestao;
+        private Label lblsubTitulo;
+        private Label lblRespostaIA;
     }
 }

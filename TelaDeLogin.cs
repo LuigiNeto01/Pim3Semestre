@@ -10,9 +10,6 @@ namespace Pim3Semestre
     {
         private bool modoRegistro = false;
 
-        // String de conexão
-        private string connString = "Host=localhost;Port=5432;Username=postgres;Password=123;Database=Pim;";
-
         public TelaDeLogin()
         {
             InitializeComponent();
@@ -52,32 +49,24 @@ namespace Pim3Semestre
 
         private void RegistrarUsuario()
         {
-            if (!ValidarEmail(EmailTxBx.Text))
+            if (!util.ValidarDados.ValidarEmail(EmailTxBx.Text))
             {
                 MessageBox.Show("Email inválido!", "Erro de validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!ValidarCPF(CPFTxBx.Text))
+            if (!util.ValidarDados.ValidarCPF(CPFTxBx.Text))
             {
                 MessageBox.Show("CPF inválido! Deve ter 11 dígitos.", "Erro de validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            using (var conexao = new NpgsqlConnection(connString))
+            using (var conexao = util.Banco.AbrirConexao())
             {
                 try
                 {
-                    conexao.Open();
-
-                    string queryCheck = @"
-                        SELECT 1
-                        FROM ""user""
-                        WHERE cpf = @cpf
-                           OR email = @email
-                           OR nome = @nome
-                        LIMIT 1;
-                    ";
+                    // Verificar se já existe usuário
+                    string queryCheck = util.Banco.Queries.VerificarUsuarioExistente;
 
                     using (var cmdCheck = new NpgsqlCommand(queryCheck, conexao))
                     {
@@ -90,22 +79,20 @@ namespace Pim3Semestre
                         if (existe != null)
                         {
                             MessageBox.Show("CPF, email ou nome já cadastrado!", "Erro de Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            conexao.Close();
                             return;
                         }
                     }
 
-                    string queryInsert = @"
-                        INSERT INTO ""user"" (cpf, nome, email, senha)
-                        VALUES (@cpf, @nome, @email, @senha);
-                    ";
+                    // Inserir novo usuário
+                    string queryInsert = util.Banco.Queries.InserirUsuario;
 
                     using (var cmdInsert = new NpgsqlCommand(queryInsert, conexao))
                     {
                         cmdInsert.Parameters.AddWithValue("cpf", CPFTxBx.Text.Replace(".", "").Replace("-", ""));
                         cmdInsert.Parameters.AddWithValue("nome", UserTxBx.Text);
                         cmdInsert.Parameters.AddWithValue("email", EmailTxBx.Text);
-                        cmdInsert.Parameters.AddWithValue("senha", GerarHash(PassWordTxBx.Text)); // Agora senha salva com hash!
+                        cmdInsert.Parameters.AddWithValue("usuario", "usuario");
+                        cmdInsert.Parameters.AddWithValue("senha", util.ValidarDados.GerarHash(PassWordTxBx.Text));
 
                         cmdInsert.ExecuteNonQuery();
                         MessageBox.Show("Conta criada com sucesso!", "Registro Completo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -119,8 +106,6 @@ namespace Pim3Semestre
                         // Volta pro modo login
                         BtnRegistro_Click(null, null);
                     }
-
-                    conexao.Close();
                 }
                 catch (Exception ex)
                 {
@@ -131,43 +116,42 @@ namespace Pim3Semestre
 
         private void FazerLogin()
         {
-            using (var conexao = new NpgsqlConnection(connString))
+            using (var conexao = util.Banco.AbrirConexao())
             {
                 try
                 {
-                    conexao.Open();
-
-                    string query = @"
-                        SELECT 1
-                        FROM ""user""
-                        WHERE nome = @nome
-                          AND senha = @Senha
-                        LIMIT 1;
-                    ";
+                    string query = util.Banco.Queries.LoginUsuario;
 
                     using (var cmd = new NpgsqlCommand(query, conexao))
                     {
                         cmd.Parameters.AddWithValue("nome", UserTxBx.Text);
-                        cmd.Parameters.AddWithValue("Senha", GerarHash(PassWordTxBx.Text)); // Senha comparada com hash!
+                        cmd.Parameters.AddWithValue("Senha", util.ValidarDados.GerarHash(PassWordTxBx.Text));
 
-                        var resultado = cmd.ExecuteScalar();
-
-                        if (resultado != null)
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            MessageBox.Show("Login realizado com sucesso!", "Bem-vindo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (reader.Read())
+                            {
+                                var usuario = new util.Usuario
+                                {
+                                    id = Convert.ToInt32(reader["id"]),
+                                    CPF = reader["cpf"].ToString(),
+                                    Nome = reader["nome"].ToString(),
+                                    Email = reader["email"].ToString(),
+                                    Cargo = reader["cargo"].ToString(),
+                                    Senha = PassWordTxBx.Text
+                                };
 
-                            this.Hide(); // Esconde a TelaDeLogin
-                            HomePage home = new HomePage();
-                            home.ShowDialog(); // Espera a HomePage fechar
-                            this.Close(); // Fecha a TelaDeLogin depois
-                        }
-                        else
-                        {
-                            MessageBox.Show("Nome de usuário ou senha incorretos!", "Erro de login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                this.Hide();
+                                HomePage home = new HomePage(usuario);
+                                home.ShowDialog();
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nome de usuário ou senha incorretos!", "Erro de login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
-
-                    conexao.Close();
                 }
                 catch (Exception ex)
                 {
@@ -176,30 +160,7 @@ namespace Pim3Semestre
             }
         }
 
-        private bool ValidarEmail(string email)
-        {
-            return email.Contains("@") && email.Contains(".");
-        }
 
-        private bool ValidarCPF(string cpf)
-        {
-            cpf = cpf.Replace(".", "").Replace("-", "").Trim();
-            return cpf.Length == 11;
-        }
-
-        private string GerarHash(string texto)
-        {
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(texto));
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
-        }
 
         private void CPFTxBx_TextChanged(object sender, EventArgs e)
         {
