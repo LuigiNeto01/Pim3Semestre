@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            pictureBox1 = new PictureBox();
             button5 = new Button();
             lblBemVindo = new Label();
             btnLogoff = new Button();
@@ -62,18 +63,35 @@
             label3 = new Label();
             label2 = new Label();
             comboBox1 = new ComboBox();
+            PaginaOcultaChamados = new TabPage();
+            panelListaChamados = new Panel();
+            cardTemplate = new Panel();
+            lblChamadosCriticos = new Label();
+            lblChamadosAbertos = new Label();
+            lblChamadosFechados = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
+            label10 = new Label();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabControl1.SuspendLayout();
             tabEditarPerfil.SuspendLayout();
             panel2.SuspendLayout();
             tabNovoChamado.SuspendLayout();
             PnlHelp.SuspendLayout();
             panel3.SuspendLayout();
+            PaginaOcultaChamados.SuspendLayout();
+            panelListaChamados.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.ActiveBorder;
+            panel1.BackColor = Color.DarkOrchid;
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(button5);
             panel1.Controls.Add(lblBemVindo);
             panel1.Controls.Add(btnLogoff);
@@ -85,6 +103,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(293, 634);
             panel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = Properties.Resources.Frame_1;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Location = new Point(12, 24);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(275, 135);
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
+            pictureBox1.UseWaitCursor = true;
             // 
             // button5
             // 
@@ -104,7 +133,7 @@
             lblBemVindo.AutoSize = true;
             lblBemVindo.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblBemVindo.ImageAlign = ContentAlignment.TopCenter;
-            lblBemVindo.Location = new Point(21, 150);
+            lblBemVindo.Location = new Point(12, 174);
             lblBemVindo.MaximumSize = new Size(260, 80);
             lblBemVindo.Name = "lblBemVindo";
             lblBemVindo.Size = new Size(129, 32);
@@ -145,8 +174,9 @@
             button2.Name = "button2";
             button2.Size = new Size(260, 44);
             button2.TabIndex = 1;
-            button2.Text = "Meus chamados";
+            button2.Text = "Chamados";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // btnEditarPerfil
             // 
@@ -165,6 +195,7 @@
             tabControl1.Controls.Add(Inicio);
             tabControl1.Controls.Add(tabEditarPerfil);
             tabControl1.Controls.Add(tabNovoChamado);
+            tabControl1.Controls.Add(PaginaOcultaChamados);
             tabControl1.Dock = DockStyle.Left;
             tabControl1.Location = new Point(293, 0);
             tabControl1.Name = "tabControl1";
@@ -184,6 +215,7 @@
             // 
             // tabEditarPerfil
             // 
+            tabEditarPerfil.BackColor = Color.BlueViolet;
             tabEditarPerfil.Controls.Add(panel2);
             tabEditarPerfil.Location = new Point(4, 24);
             tabEditarPerfil.Name = "tabEditarPerfil";
@@ -191,11 +223,14 @@
             tabEditarPerfil.Size = new Size(926, 606);
             tabEditarPerfil.TabIndex = 1;
             tabEditarPerfil.Text = "Editar Perfil";
-            tabEditarPerfil.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
-            panel2.BackColor = Color.Honeydew;
+            panel2.BackColor = Color.DarkOrchid;
+            panel2.Controls.Add(label10);
+            panel2.Controls.Add(label9);
+            panel2.Controls.Add(label8);
+            panel2.Controls.Add(label7);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(btnSalvar);
             panel2.Controls.Add(txbxCPF);
@@ -229,7 +264,7 @@
             // 
             // txbxCPF
             // 
-            txbxCPF.Location = new Point(30, 296);
+            txbxCPF.Location = new Point(30, 335);
             txbxCPF.Mask = "000.000.000-00";
             txbxCPF.Name = "txbxCPF";
             txbxCPF.ReadOnly = true;
@@ -238,27 +273,28 @@
             // 
             // txbxEmail
             // 
-            txbxEmail.Location = new Point(30, 229);
+            txbxEmail.Location = new Point(30, 268);
             txbxEmail.Name = "txbxEmail";
             txbxEmail.Size = new Size(337, 23);
             txbxEmail.TabIndex = 2;
             // 
             // txbxSenha
             // 
-            txbxSenha.Location = new Point(30, 165);
+            txbxSenha.Location = new Point(30, 204);
             txbxSenha.Name = "txbxSenha";
             txbxSenha.Size = new Size(337, 23);
             txbxSenha.TabIndex = 1;
             // 
             // txbxNomeUsuario
             // 
-            txbxNomeUsuario.Location = new Point(30, 100);
+            txbxNomeUsuario.Location = new Point(30, 139);
             txbxNomeUsuario.Name = "txbxNomeUsuario";
             txbxNomeUsuario.Size = new Size(337, 23);
             txbxNomeUsuario.TabIndex = 0;
             // 
             // tabNovoChamado
             // 
+            tabNovoChamado.BackColor = Color.BlueViolet;
             tabNovoChamado.Controls.Add(PnlHelp);
             tabNovoChamado.Controls.Add(panel3);
             tabNovoChamado.Location = new Point(4, 24);
@@ -267,11 +303,10 @@
             tabNovoChamado.Size = new Size(926, 606);
             tabNovoChamado.TabIndex = 2;
             tabNovoChamado.Text = "Novo chamado";
-            tabNovoChamado.UseVisualStyleBackColor = true;
             // 
             // PnlHelp
             // 
-            PnlHelp.BackColor = SystemColors.ActiveBorder;
+            PnlHelp.BackColor = Color.DarkOrchid;
             PnlHelp.Controls.Add(EnviarChamadoPadrao);
             PnlHelp.Controls.Add(txbxSugestao);
             PnlHelp.Controls.Add(lblsubTitulo);
@@ -328,7 +363,7 @@
             // 
             // panel3
             // 
-            panel3.BackColor = SystemColors.ActiveBorder;
+            panel3.BackColor = Color.DarkOrchid;
             panel3.Controls.Add(btnEnviarChamado);
             panel3.Controls.Add(lblPrioridade);
             panel3.Controls.Add(cmbxPrioridade);
@@ -343,7 +378,6 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(427, 587);
             panel3.TabIndex = 1;
-            panel3.Paint += panel3_Paint;
             // 
             // btnEnviarChamado
             // 
@@ -446,6 +480,144 @@
             comboBox1.TabIndex = 0;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
+            // PaginaOcultaChamados
+            // 
+            PaginaOcultaChamados.Controls.Add(panelListaChamados);
+            PaginaOcultaChamados.Controls.Add(lblChamadosCriticos);
+            PaginaOcultaChamados.Controls.Add(lblChamadosAbertos);
+            PaginaOcultaChamados.Controls.Add(lblChamadosFechados);
+            PaginaOcultaChamados.Controls.Add(label6);
+            PaginaOcultaChamados.Controls.Add(label5);
+            PaginaOcultaChamados.Controls.Add(label4);
+            PaginaOcultaChamados.Location = new Point(4, 24);
+            PaginaOcultaChamados.Name = "PaginaOcultaChamados";
+            PaginaOcultaChamados.Padding = new Padding(3);
+            PaginaOcultaChamados.Size = new Size(926, 606);
+            PaginaOcultaChamados.TabIndex = 3;
+            PaginaOcultaChamados.Text = "Chamados";
+            PaginaOcultaChamados.UseVisualStyleBackColor = true;
+            PaginaOcultaChamados.Click += PaginaOcultaChamados_Click;
+            // 
+            // panelListaChamados
+            // 
+            panelListaChamados.AutoScroll = true;
+            panelListaChamados.BackColor = Color.Transparent;
+            panelListaChamados.BackgroundImageLayout = ImageLayout.None;
+            panelListaChamados.Controls.Add(cardTemplate);
+            panelListaChamados.Location = new Point(8, 97);
+            panelListaChamados.Name = "panelListaChamados";
+            panelListaChamados.Size = new Size(908, 500);
+            panelListaChamados.TabIndex = 7;
+            // 
+            // cardTemplate
+            // 
+            cardTemplate.BackColor = SystemColors.ScrollBar;
+            cardTemplate.Location = new Point(3, 3);
+            cardTemplate.Name = "cardTemplate";
+            cardTemplate.Size = new Size(890, 153);
+            cardTemplate.TabIndex = 6;
+            cardTemplate.Visible = false;
+            // 
+            // lblChamadosCriticos
+            // 
+            lblChamadosCriticos.AutoSize = true;
+            lblChamadosCriticos.Font = new Font("Segoe UI Black", 26.25F, FontStyle.Bold);
+            lblChamadosCriticos.Location = new Point(766, 44);
+            lblChamadosCriticos.Name = "lblChamadosCriticos";
+            lblChamadosCriticos.Size = new Size(58, 47);
+            lblChamadosCriticos.TabIndex = 5;
+            lblChamadosCriticos.Text = "12";
+            // 
+            // lblChamadosAbertos
+            // 
+            lblChamadosAbertos.AutoSize = true;
+            lblChamadosAbertos.Font = new Font("Segoe UI Black", 26.25F, FontStyle.Bold);
+            lblChamadosAbertos.Location = new Point(441, 44);
+            lblChamadosAbertos.Name = "lblChamadosAbertos";
+            lblChamadosAbertos.Size = new Size(58, 47);
+            lblChamadosAbertos.TabIndex = 4;
+            lblChamadosAbertos.Text = "12";
+            // 
+            // lblChamadosFechados
+            // 
+            lblChamadosFechados.AutoSize = true;
+            lblChamadosFechados.Font = new Font("Segoe UI Black", 26.25F, FontStyle.Bold);
+            lblChamadosFechados.Location = new Point(108, 44);
+            lblChamadosFechados.Name = "lblChamadosFechados";
+            lblChamadosFechados.Size = new Size(58, 47);
+            lblChamadosFechados.TabIndex = 3;
+            lblChamadosFechados.Text = "12";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
+            label6.Location = new Point(701, 19);
+            label6.Name = "label6";
+            label6.Size = new Size(175, 25);
+            label6.TabIndex = 2;
+            label6.Text = "Chamados Críticos";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
+            label5.Location = new Point(377, 19);
+            label5.Name = "label5";
+            label5.Size = new Size(180, 25);
+            label5.TabIndex = 1;
+            label5.Text = "Chamados Abertos";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
+            label4.Location = new Point(45, 19);
+            label4.Name = "label4";
+            label4.Size = new Size(191, 25);
+            label4.TabIndex = 0;
+            label4.Text = "Chamados Fechados";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(30, 115);
+            label7.Name = "label7";
+            label7.Size = new Size(53, 21);
+            label7.TabIndex = 7;
+            label7.Text = "Nome";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Location = new Point(30, 180);
+            label8.Name = "label8";
+            label8.Size = new Size(53, 21);
+            label8.TabIndex = 8;
+            label8.Text = "Senha";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Location = new Point(30, 244);
+            label9.Name = "label9";
+            label9.Size = new Size(48, 21);
+            label9.TabIndex = 9;
+            label9.Text = "Email";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.Location = new Point(30, 315);
+            label10.Name = "label10";
+            label10.Size = new Size(37, 21);
+            label10.TabIndex = 10;
+            label10.Text = "CPF";
+            // 
             // HomePage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -461,6 +633,7 @@
             Load += Form1_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabControl1.ResumeLayout(false);
             tabEditarPerfil.ResumeLayout(false);
             panel2.ResumeLayout(false);
@@ -470,6 +643,9 @@
             PnlHelp.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            PaginaOcultaChamados.ResumeLayout(false);
+            PaginaOcultaChamados.PerformLayout();
+            panelListaChamados.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -509,5 +685,19 @@
         private TextBox txbxSugestao;
         private Label lblsubTitulo;
         private Label lblRespostaIA;
+        private Label lblChamadosCriticos;
+        private Label lblChamadosAbertos;
+        private Label lblChamadosFechados;
+        private Label label6;
+        private Label label5;
+        private Label label4;
+        private Panel cardTemplate;
+        private Panel panelListaChamados;
+        private TabPage PaginaOcultaChamados;
+        private PictureBox pictureBox1;
+        private Label label7;
+        private Label label10;
+        private Label label9;
+        private Label label8;
     }
 }

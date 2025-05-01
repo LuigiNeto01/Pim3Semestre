@@ -12,6 +12,7 @@ namespace Pim3Semestre
         private TabPage PaginaEditorOculta;
         private TabPage PaginaAbrirChamadoOculta;
 
+
         public HomePage(Usuario usuario)
         {
             InitializeComponent();
@@ -20,6 +21,7 @@ namespace Pim3Semestre
             PaginaAbrirChamadoOculta = tabNovoChamado;
             tabControl1.TabPages.Remove(PaginaEditorOculta);
             tabControl1.TabPages.Remove(PaginaAbrirChamadoOculta);
+            tabControl1.TabPages.Remove(PaginaOcultaChamados);
         }
 
         private void HomePage_FormClosed(object sender, FormClosedEventArgs e)
@@ -50,6 +52,49 @@ namespace Pim3Semestre
 
         }
 
+        private int ContarChamadosAbertos()
+        {
+            using var conexao = util.Banco.AbrirConexao();
+            string query = usuario.Cargo == "usuario"
+                ? util.Banco.Queries.contarAbertos
+                : util.Banco.Queries.contarAbertosAdmin;
+
+            using var cmd = new NpgsqlCommand(query, conexao);
+            if (usuario.Cargo == "usuario")
+                cmd.Parameters.AddWithValue("id", usuario.id);
+
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        private int ContarChamadosFechados()
+        {
+            using var conexao = util.Banco.AbrirConexao();
+            string query = usuario.Cargo == "usuario"
+                ? util.Banco.Queries.contarFechados
+                : util.Banco.Queries.contarFechadosAdmin;
+
+            using var cmd = new NpgsqlCommand(query, conexao);
+            if (usuario.Cargo == "usuario")
+                cmd.Parameters.AddWithValue("id", usuario.id);
+
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        private int ContarChamadosCriticos()
+        {
+            using var conexao = util.Banco.AbrirConexao();
+            string query = usuario.Cargo == "usuario"
+                ? util.Banco.Queries.contarCriticos
+                : util.Banco.Queries.contarCriticosAdmin;
+
+            using var cmd = new NpgsqlCommand(query, conexao);
+            if (usuario.Cargo == "usuario")
+                cmd.Parameters.AddWithValue("id", usuario.id);
+
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+
         // AREA DO MENU LATERAL ----------------------------------------------------------------
         private void button1_Click(object sender, EventArgs e) // mostrar a parte de editar perfil
         {
@@ -78,10 +123,38 @@ namespace Pim3Semestre
             }
         }
 
-        // AREA DO MENU LATERAL ----------------------------------------------------------------
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (!tabControl1.TabPages.Contains(PaginaOcultaChamados))
+            {
+                tabControl1.TabPages.Add(PaginaOcultaChamados);
+                tabControl1.SelectedTab = PaginaOcultaChamados;
+                CarregarChamados();
 
+                lblChamadosAbertos.Text = ContarChamadosAbertos().ToString();
+                lblChamadosFechados.Text = ContarChamadosFechados().ToString();
+                lblChamadosCriticos.Text = ContarChamadosCriticos().ToString();
+            }
+            else
+            {
+                tabControl1.TabPages.Remove(PaginaOcultaChamados);
+            }
+        }
 
+        private void button4_Click(object sender, EventArgs e) // deslogar
+        {
+            DialogResult resultado = MessageBox.Show("Deseja realmente sair?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resultado == DialogResult.Yes)
+            {
 
+                this.Hide();
+                TelaDeLogin telaDeLogin = new TelaDeLogin();
+                telaDeLogin.ShowDialog();
+                this.Close();
+            }
+        }
+
+        // FIM DA AREA DO MENU LATERAL ----------------------------------------------------------------
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
@@ -91,13 +164,7 @@ namespace Pim3Semestre
                 {
                     conexao.Open();
 
-                    string query = @"
-                        UPDATE ""user""
-                        SET nome = @nome,
-                            email = @email,
-                            senha = @senha
-                        WHERE cpf = @cpf;
-                    ";
+                    string query = util.Banco.Queries.SalvarEditarPerfil;
 
                     using (var cmd = new NpgsqlCommand(query, conexao))
                     {
@@ -128,18 +195,6 @@ namespace Pim3Semestre
             }
         }
 
-        private void button4_Click(object sender, EventArgs e) // deslogar
-        {
-            DialogResult resultado = MessageBox.Show("Deseja realmente sair?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (resultado == DialogResult.Yes)
-            {
-
-                this.Hide();
-                TelaDeLogin telaDeLogin = new TelaDeLogin();
-                telaDeLogin.ShowDialog();
-                this.Close();
-            }
-        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -225,7 +280,7 @@ namespace Pim3Semestre
                             cmd.Parameters.AddWithValue("prioridade", prioridade);
                             cmd.Parameters.AddWithValue("data_criacao", DateTime.Now);
                             cmd.Parameters.AddWithValue("resolvido", false);
-                            cmd.Parameters.AddWithValue("id_usuario_criador", usuario.id); 
+                            cmd.Parameters.AddWithValue("id_usuario_criador", usuario.id);
 
                             cmd.ExecuteNonQuery();
                             MessageBox.Show("Chamado enviado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -299,7 +354,162 @@ namespace Pim3Semestre
             }
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void VisualizarChamado(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            int idChamado = (int)btn.Tag;
+
+            Chat chat = new Chat(idChamado, usuario); // <- passa o usuário logado aqui
+            chat.ShowDialog();
+        }
+
+        private void ResolverChamado(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            int idChamado = (int)btn.Tag;
+
+            Chat chat = new Chat(idChamado, usuario); // <- mesmo aqui
+            chat.ShowDialog();
+        }
+
+
+        private void CarregarChamados()
+        {
+            panelListaChamados.Controls.Clear();
+
+            using (var conexao = util.Banco.AbrirConexao())
+            {
+                string query = usuario.Cargo == "usuario"
+                    ? util.Banco.Queries.ListarChamadosUser
+                    : util.Banco.Queries.ListarChamadosAdmin;
+
+                using (var cmd = new NpgsqlCommand(query, conexao))
+                {
+                    if (usuario.Cargo == "usuario")
+                        cmd.Parameters.AddWithValue("id_usuario", usuario.id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        int y = 0;
+
+                        while (reader.Read())
+                        {
+                            int prioridadeNum = Convert.ToInt32(reader["prioridade"]);
+                            if (usuario.Cargo == "Suporte" && prioridadeNum < usuario.Nivel)
+                                continue;
+
+                            int idChamado = Convert.ToInt32(reader["id"]);
+                            string titulo = reader["titulo"].ToString();
+                            string motivo = reader["motivo"].ToString();
+                            string descricao = reader.IsDBNull(reader.GetOrdinal("descricao"))
+                                ? ""
+                                : reader["descricao"].ToString();
+                            bool resolvido = reader["resolvido"] != DBNull.Value && Convert.ToBoolean(reader["resolvido"]);
+                            string statusTexto = resolvido ? "Fechado" : "Aberto";
+                            string prioridadeTexto = prioridadeNum switch
+                            {
+                                1 => "Crítica",
+                                2 => "Alta",
+                                3 => "Média",
+                                4 => "Baixa",
+                                _ => "Desconhecida"
+                            };
+
+                            Panel novoCard = new Panel
+                            {
+                                Size = cardTemplate.Size,
+                                BackColor = cardTemplate.BackColor,
+                                BorderStyle = cardTemplate.BorderStyle,
+                                Location = new Point(0, y),
+                                Margin = new Padding(9)
+                            };
+
+                            Label lblTitulo = new Label
+                            {
+                                Text = $"{titulo} - #{idChamado}",
+                                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                                Location = new Point(10, 10),
+                                AutoSize = true
+                            };
+
+                            Label lblStatus = new Label
+                            {
+                                Text = "Status: " + statusTexto,
+                                Location = new Point(10, 30),
+                                AutoSize = true
+                            };
+
+                            Label lblMotivo = new Label
+                            {
+                                Text = "Motivo: " + motivo,
+                                Location = new Point(10, 50),
+                                AutoSize = true
+                            };
+
+                            Label lblPrioridade = new Label
+                            {
+                                Text = "Prioridade: " + prioridadeTexto,
+                                Location = new Point(10, 70),
+                                AutoSize = true
+                            };
+
+                            int yOffset = 90;
+
+                            if (!string.IsNullOrWhiteSpace(descricao))
+                            {
+                                Label lblDescricao = new Label
+                                {
+                                    Text = "Descrição: " + descricao,
+                                    Location = new Point(10, yOffset),
+                                    AutoSize = true
+                                };
+                                novoCard.Controls.Add(lblDescricao);
+                                yOffset += lblDescricao.Height + 10;
+                            }
+
+                            if (usuario.Cargo != "usuario" && reader.FieldCount > reader.GetOrdinal("nome_criador"))
+                            {
+                                Label lblCriador = new Label
+                                {
+                                    Text = "Criado por: " + reader["nome_criador"].ToString(),
+                                    Location = new Point(10, yOffset),
+                                    AutoSize = true
+                                };
+                                novoCard.Controls.Add(lblCriador);
+                                yOffset += lblCriador.Height + 10;
+                            }
+
+                            Button btnAcao = new Button
+                            {
+                                Text = usuario.Cargo == "usuario" ? "Visualizar" : "Resolver",
+                                Location = new Point(10, yOffset),
+                                Tag = idChamado,
+                                Width = 100
+                            };
+
+                            if (usuario.Cargo == "usuario")
+                                btnAcao.Click += VisualizarChamado;
+                            else
+                                btnAcao.Click += ResolverChamado;
+
+                            // Adiciona os controles ao card
+                            novoCard.Controls.Add(lblTitulo);
+                            novoCard.Controls.Add(lblStatus);
+                            novoCard.Controls.Add(lblMotivo);
+                            novoCard.Controls.Add(lblPrioridade);
+                            novoCard.Controls.Add(btnAcao);
+
+                            panelListaChamados.Controls.Add(novoCard);
+                            y += novoCard.Height + 10;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        private void PaginaOcultaChamados_Click(object sender, EventArgs e)
         {
 
         }

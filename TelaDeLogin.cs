@@ -116,6 +116,12 @@ namespace Pim3Semestre
 
         private void FazerLogin()
         {
+            if (string.IsNullOrWhiteSpace(UserTxBx.Text) || string.IsNullOrWhiteSpace(PassWordTxBx.Text))
+            {
+                MessageBox.Show("Preencha todos os campos antes de fazer login.", "Campos obrigatórios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             using (var conexao = util.Banco.AbrirConexao())
             {
                 try
@@ -138,7 +144,9 @@ namespace Pim3Semestre
                                     Nome = reader["nome"].ToString(),
                                     Email = reader["email"].ToString(),
                                     Cargo = reader["cargo"].ToString(),
-                                    Senha = PassWordTxBx.Text
+                                    Senha = PassWordTxBx.Text,
+                                    Nivel = reader["nivel"] != DBNull.Value ? Convert.ToInt32(reader["nivel"]) : 0
+
                                 };
 
                                 this.Hide();

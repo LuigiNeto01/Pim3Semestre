@@ -14,5 +14,6 @@ namespace Pim3Semestre.util
         public string Email { get; set; }
         public string Cargo { get; set; }
         public string Senha { get; set; }
+        public int Nivel { get; set; }
     }
 }

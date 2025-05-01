@@ -59,5 +59,15 @@ namespace Pim3Semestre.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Frame_1 {
+            get {
+                object obj = ResourceManager.GetObject("Frame_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
