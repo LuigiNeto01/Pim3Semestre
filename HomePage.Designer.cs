@@ -38,18 +38,6 @@
             btnEditarPerfil = new Button();
             tabControl1 = new TabControl();
             Inicio = new TabPage();
-            tabEditarPerfil = new TabPage();
-            panel2 = new Panel();
-            label10 = new Label();
-            label9 = new Label();
-            label8 = new Label();
-            label7 = new Label();
-            label1 = new Label();
-            btnSalvar = new Button();
-            txbxCPF = new MaskedTextBox();
-            txbxEmail = new TextBox();
-            txbxSenha = new TextBox();
-            txbxNomeUsuario = new TextBox();
             tabNovoChamado = new TabPage();
             PnlHelp = new Panel();
             EnviarChamadoPadrao = new Button();
@@ -79,8 +67,6 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabControl1.SuspendLayout();
-            tabEditarPerfil.SuspendLayout();
-            panel2.SuspendLayout();
             tabNovoChamado.SuspendLayout();
             PnlHelp.SuspendLayout();
             panel3.SuspendLayout();
@@ -194,7 +180,6 @@
             // tabControl1
             // 
             tabControl1.Controls.Add(Inicio);
-            tabControl1.Controls.Add(tabEditarPerfil);
             tabControl1.Controls.Add(tabNovoChamado);
             tabControl1.Controls.Add(PaginaOcultaChamados);
             tabControl1.Dock = DockStyle.Left;
@@ -214,128 +199,9 @@
             Inicio.Text = "Página inicial";
             Inicio.UseVisualStyleBackColor = true;
             // 
-            // tabEditarPerfil
-            // 
-            tabEditarPerfil.BackColor = Color.BlueViolet;
-            tabEditarPerfil.Controls.Add(panel2);
-            tabEditarPerfil.Location = new Point(4, 24);
-            tabEditarPerfil.Name = "tabEditarPerfil";
-            tabEditarPerfil.Padding = new Padding(3);
-            tabEditarPerfil.Size = new Size(926, 606);
-            tabEditarPerfil.TabIndex = 1;
-            tabEditarPerfil.Text = "Editar Perfil";
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.DarkOrchid;
-            panel2.Controls.Add(label10);
-            panel2.Controls.Add(label9);
-            panel2.Controls.Add(label8);
-            panel2.Controls.Add(label7);
-            panel2.Controls.Add(label1);
-            panel2.Controls.Add(btnSalvar);
-            panel2.Controls.Add(txbxCPF);
-            panel2.Controls.Add(txbxEmail);
-            panel2.Controls.Add(txbxSenha);
-            panel2.Controls.Add(txbxNomeUsuario);
-            panel2.Location = new Point(52, 58);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(399, 508);
-            panel2.TabIndex = 1;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(30, 315);
-            label10.Name = "label10";
-            label10.Size = new Size(37, 21);
-            label10.TabIndex = 10;
-            label10.Text = "CPF";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(30, 244);
-            label9.Name = "label9";
-            label9.Size = new Size(48, 21);
-            label9.TabIndex = 9;
-            label9.Text = "Email";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(30, 180);
-            label8.Name = "label8";
-            label8.Size = new Size(53, 21);
-            label8.TabIndex = 8;
-            label8.Text = "Senha";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(30, 115);
-            label7.Name = "label7";
-            label7.Size = new Size(53, 21);
-            label7.TabIndex = 7;
-            label7.Text = "Nome";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(30, 42);
-            label1.Name = "label1";
-            label1.Size = new Size(150, 32);
-            label1.TabIndex = 6;
-            label1.Text = "Editar perfil";
-            // 
-            // btnSalvar
-            // 
-            btnSalvar.Location = new Point(243, 443);
-            btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(124, 43);
-            btnSalvar.TabIndex = 5;
-            btnSalvar.Text = "Salvar dados";
-            btnSalvar.UseVisualStyleBackColor = true;
-            btnSalvar.Click += btnSalvar_Click;
-            // 
-            // txbxCPF
-            // 
-            txbxCPF.Location = new Point(30, 335);
-            txbxCPF.Mask = "000.000.000-00";
-            txbxCPF.Name = "txbxCPF";
-            txbxCPF.ReadOnly = true;
-            txbxCPF.Size = new Size(337, 23);
-            txbxCPF.TabIndex = 4;
-            // 
-            // txbxEmail
-            // 
-            txbxEmail.Location = new Point(30, 268);
-            txbxEmail.Name = "txbxEmail";
-            txbxEmail.Size = new Size(337, 23);
-            txbxEmail.TabIndex = 2;
-            // 
-            // txbxSenha
-            // 
-            txbxSenha.Location = new Point(30, 204);
-            txbxSenha.Name = "txbxSenha";
-            txbxSenha.Size = new Size(337, 23);
-            txbxSenha.TabIndex = 1;
-            // 
-            // txbxNomeUsuario
-            // 
-            txbxNomeUsuario.Location = new Point(30, 139);
-            txbxNomeUsuario.Name = "txbxNomeUsuario";
-            txbxNomeUsuario.Size = new Size(337, 23);
-            txbxNomeUsuario.TabIndex = 0;
-            // 
             // tabNovoChamado
             // 
-            tabNovoChamado.BackColor = Color.BlueViolet;
+            tabNovoChamado.BackColor = Color.White;
             tabNovoChamado.Controls.Add(PnlHelp);
             tabNovoChamado.Controls.Add(panel3);
             tabNovoChamado.Location = new Point(4, 24);
@@ -445,7 +311,7 @@
             // 
             cmbxPrioridade.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbxPrioridade.FormattingEnabled = true;
-            cmbxPrioridade.Items.AddRange(new object[] { "Baixo", "Médio", "Alto", "Crítico" });
+            cmbxPrioridade.Items.AddRange(new object[] { "Crítica", "Alta", "Média", "Baixa" });
             cmbxPrioridade.Location = new Point(70, 459);
             cmbxPrioridade.Name = "cmbxPrioridade";
             cmbxPrioridade.Size = new Size(299, 23);
@@ -495,9 +361,9 @@
             label2.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.Location = new Point(70, 25);
             label2.Name = "label2";
-            label2.Size = new Size(299, 40);
+            label2.Size = new Size(307, 40);
             label2.TabIndex = 1;
-            label2.Text = "Abrir chamado novo";
+            label2.Text = "Abrir novo chamado ";
             // 
             // comboBox1
             // 
@@ -552,7 +418,7 @@
             // 
             lblChamadosCriticos.AutoSize = true;
             lblChamadosCriticos.Font = new Font("Segoe UI Black", 26.25F, FontStyle.Bold);
-            lblChamadosCriticos.Location = new Point(766, 44);
+            lblChamadosCriticos.Location = new Point(505, 44);
             lblChamadosCriticos.Name = "lblChamadosCriticos";
             lblChamadosCriticos.Size = new Size(58, 47);
             lblChamadosCriticos.TabIndex = 5;
@@ -562,7 +428,7 @@
             // 
             lblChamadosAbertos.AutoSize = true;
             lblChamadosAbertos.Font = new Font("Segoe UI Black", 26.25F, FontStyle.Bold);
-            lblChamadosAbertos.Location = new Point(441, 44);
+            lblChamadosAbertos.Location = new Point(313, 44);
             lblChamadosAbertos.Name = "lblChamadosAbertos";
             lblChamadosAbertos.Size = new Size(58, 47);
             lblChamadosAbertos.TabIndex = 4;
@@ -582,7 +448,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
-            label6.Location = new Point(701, 19);
+            label6.Location = new Point(440, 19);
             label6.Name = "label6";
             label6.Size = new Size(175, 25);
             label6.TabIndex = 2;
@@ -592,7 +458,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
-            label5.Location = new Point(377, 19);
+            label5.Location = new Point(249, 19);
             label5.Name = "label5";
             label5.Size = new Size(180, 25);
             label5.TabIndex = 1;
@@ -632,9 +498,6 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabControl1.ResumeLayout(false);
-            tabEditarPerfil.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             tabNovoChamado.ResumeLayout(false);
             PnlHelp.ResumeLayout(false);
             PnlHelp.PerformLayout();
@@ -656,15 +519,7 @@
         private Label lblBemVindo;
         private TabControl tabControl1;
         private TabPage Inicio;
-        private TabPage tabEditarPerfil;
-        private TextBox txbxNomeUsuario;
-        private Panel panel2;
-        private TextBox txbxEmail;
-        private TextBox txbxSenha;
-        private MaskedTextBox txbxCPF;
         private Button button5;
-        private Label label1;
-        private Button btnSalvar;
         private TabPage tabNovoChamado;
         private ComboBox comboBox1;
         private Panel panel3;
@@ -692,9 +547,5 @@
         private Panel panelListaChamados;
         private TabPage PaginaOcultaChamados;
         private PictureBox pictureBox1;
-        private Label label7;
-        private Label label10;
-        private Label label9;
-        private Label label8;
     }
 }

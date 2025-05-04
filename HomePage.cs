@@ -7,9 +7,7 @@ namespace Pim3Semestre
 {
     public partial class HomePage : Form
     {
-        private string connString = "Host=localhost;Port=5432;Username=postgres;Password=123;Database=Pim;";
         private Usuario usuario;
-        private TabPage PaginaEditorOculta;
         private TabPage PaginaAbrirChamadoOculta;
 
 
@@ -17,9 +15,7 @@ namespace Pim3Semestre
         {
             InitializeComponent();
             this.usuario = usuario;
-            PaginaEditorOculta = tabEditarPerfil;
             PaginaAbrirChamadoOculta = tabNovoChamado;
-            tabControl1.TabPages.Remove(PaginaEditorOculta);
             tabControl1.TabPages.Remove(PaginaAbrirChamadoOculta);
             tabControl1.TabPages.Remove(PaginaOcultaChamados);
         }
@@ -34,12 +30,9 @@ namespace Pim3Semestre
         private void Form1_Load(object sender, EventArgs e)
         {
             lblBemVindo.Text = $"Bem-vindo, {usuario.Nome}!";
-            txbxNomeUsuario.Text = usuario.Nome;
-            txbxEmail.Text = usuario.Email;
-            txbxSenha.Text = usuario.Senha;
-            txbxCPF.Text = usuario.CPF;
 
-            if (usuario.Cargo == "usuario")
+
+            if (usuario.Cargo != "Admin")
             {
                 BtnCriarUsuario.Visible = false;
             }
@@ -151,7 +144,7 @@ namespace Pim3Semestre
 
         private void BtnCriarUsuario_Click(object sender, EventArgs e)
         {
-            GerirUsuarios gerirUsuarios = new GerirUsuarios(); 
+            GerirUsuarios gerirUsuarios = new GerirUsuarios();
             gerirUsuarios.ShowDialog();
         }
 
@@ -159,41 +152,7 @@ namespace Pim3Semestre
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            using (var conexao = new NpgsqlConnection(connString))
-            {
-                try
-                {
-                    conexao.Open();
 
-                    string query = util.Banco.Queries.SalvarEditarPerfil;
-
-                    using (var cmd = new NpgsqlCommand(query, conexao))
-                    {
-                        cmd.Parameters.AddWithValue("nome", txbxNomeUsuario.Text);
-                        cmd.Parameters.AddWithValue("email", txbxEmail.Text);
-                        cmd.Parameters.AddWithValue("senha", util.ValidarDados.GerarHash(txbxSenha.Text)); // Senha atualizada já com hash!
-
-                        cmd.Parameters.AddWithValue("cpf", usuario.CPF); // Usa o CPF salvo no objeto Usuario!
-
-                        int linhasAfetadas = cmd.ExecuteNonQuery();
-
-                        if (linhasAfetadas > 0)
-                        {
-                            MessageBox.Show("Dados atualizados com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Nenhum dado foi atualizado. Verifique o CPF!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-
-                    conexao.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao atualizar dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
         }
 
 
@@ -373,6 +332,8 @@ namespace Pim3Semestre
             chat.ShowDialog();
         }
 
+
+
         private void CarregarChamados()
         {
             panelListaChamados.Controls.Clear();
@@ -519,6 +480,9 @@ namespace Pim3Semestre
 
         }
 
+        private void pnlFiltro_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
     }
 }

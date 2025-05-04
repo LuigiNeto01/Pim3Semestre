@@ -59,10 +59,11 @@ namespace Pim3Semestre
                 string nome = reader["nome"].ToString();
                 string mensagem = reader["mensagem"].ToString();
                 DateTime data = Convert.ToDateTime(reader["data_envio"]);
+                // ...
                 int idRemetente = Convert.ToInt32(reader["remetente_id"]);
-
                 bool isUsuario = idRemetente == usuario.id;
                 AdicionarMensagem(nome, mensagem, data, isUsuario);
+
             }
         }
 
@@ -142,14 +143,16 @@ namespace Pim3Semestre
 
             using var conexao = Banco.AbrirConexao();
             string query = util.Banco.Queries.EnviarMensagem;
-
             using var cmd = new NpgsqlCommand(query, conexao);
             cmd.Parameters.AddWithValue("idChamado", idChamadoAtual);
             cmd.Parameters.AddWithValue("idUsuario", usuario.id);
             cmd.Parameters.AddWithValue("mensagem", texto);
             cmd.Parameters.AddWithValue("data", DateTime.Now);
             cmd.ExecuteNonQuery();
-            AdicionarMensagem(usuario.Nome, texto, DateTime.Now, usuario.Cargo == "usuario");
+
+            // **Sempre** passo 'true' aqui: a mensagem que eu acabo de enviar é do usuário logado
+            AdicionarMensagem(usuario.Nome, texto, DateTime.Now, true);
+
             txtMensagem.Text = "";
         }
 

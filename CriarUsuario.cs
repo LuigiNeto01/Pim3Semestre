@@ -77,9 +77,7 @@ namespace Pim3Semestre
             try
             {
                 using var conn = Banco.AbrirConexao();
-                string sql = @"
-                    INSERT INTO ""user"" (cpf, nome, email, senha, cargo, nivel) 
-                    VALUES (@cpf,@nome,@email,@senha,@cargo,@nivel)";
+                string sql = util.Banco.Queries.inserirUsuario;
                 using var cmd = new NpgsqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("cpf", txbxCriarCPF.Text.Replace(".", "").Replace("-", ""));
                 cmd.Parameters.AddWithValue("nome", txbxCriarUser.Text.Trim());
