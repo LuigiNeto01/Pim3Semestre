@@ -43,18 +43,12 @@ namespace Pim3Semestre
             btnFecharReabrir.Visible = usuario.Cargo != "usuario";
         }
 
-
         private void CarregarMensagens()
         {
             flowMensagens.Controls.Clear();
 
             using var conexao = Banco.AbrirConexao();
-            string query = @"
-        SELECT m.mensagem, m.data_envio, u.nome, u.id AS remetente_id
-        FROM mensagens_chat m
-        INNER JOIN ""user"" u ON u.id = m.id_usuario
-        WHERE m.id_chamado = @idChamado
-        ORDER BY m.data_envio ASC";
+            string query = util.Banco.Queries.CarregarMensagens;
 
             using var cmd = new NpgsqlCommand(query, conexao);
             cmd.Parameters.AddWithValue("idChamado", idChamadoAtual);
@@ -75,7 +69,7 @@ namespace Pim3Semestre
         private void CarregarStatusChamado()
         {
             using var conexao = Banco.AbrirConexao();
-            string query = "SELECT resolvido FROM chamados WHERE id = @id";
+            string query = util.Banco.Queries.CarregarStatus;
             using var cmd = new NpgsqlCommand(query, conexao);
             cmd.Parameters.AddWithValue("id", idChamadoAtual);
             chamadoFechado = Convert.ToBoolean(cmd.ExecuteScalar());
@@ -147,8 +141,7 @@ namespace Pim3Semestre
             if (string.IsNullOrEmpty(texto)) return;
 
             using var conexao = Banco.AbrirConexao();
-            string query = @"INSERT INTO mensagens_chat (id_chamado, id_usuario, mensagem, data_envio) 
-                     VALUES (@idChamado, @idUsuario, @mensagem, @data)";
+            string query = util.Banco.Queries.EnviarMensagem;
 
             using var cmd = new NpgsqlCommand(query, conexao);
             cmd.Parameters.AddWithValue("idChamado", idChamadoAtual);
@@ -166,16 +159,8 @@ namespace Pim3Semestre
             bool novoStatus = !chamadoFechado;
 
             string query = novoStatus
-                ? @"UPDATE chamados 
-           SET resolvido = TRUE, 
-               id_usuario_resolvedor = @resolvidoPor, 
-               data_resolucao = @data 
-           WHERE id = @id"
-                : @"UPDATE chamados 
-           SET resolvido = FALSE, 
-               id_usuario_resolvedor = NULL, 
-               data_resolucao = NULL 
-           WHERE id = @id";
+                ? util.Banco.Queries.FecharChamado
+                : util.Banco.Queries.ReabrirChamado;
 
             using var cmd = new NpgsqlCommand(query, conexao);
             cmd.Parameters.AddWithValue("id", idChamadoAtual);

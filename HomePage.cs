@@ -24,6 +24,8 @@ namespace Pim3Semestre
             tabControl1.TabPages.Remove(PaginaOcultaChamados);
         }
 
+
+
         private void HomePage_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
@@ -98,15 +100,8 @@ namespace Pim3Semestre
         // AREA DO MENU LATERAL ----------------------------------------------------------------
         private void button1_Click(object sender, EventArgs e) // mostrar a parte de editar perfil
         {
-            if (!tabControl1.TabPages.Contains(PaginaEditorOculta))
-            {
-                tabControl1.TabPages.Add(PaginaEditorOculta);
-                tabControl1.SelectedTab = PaginaEditorOculta;
-            }
-            else
-            {
-                tabControl1.TabPages.Remove(PaginaEditorOculta);
-            }
+            EditarUsuario editarUsuario = new EditarUsuario(usuario); // <- passa o usuário logado aqui
+            editarUsuario.ShowDialog();
         }
 
 
@@ -152,6 +147,12 @@ namespace Pim3Semestre
                 telaDeLogin.ShowDialog();
                 this.Close();
             }
+        }
+
+        private void BtnCriarUsuario_Click(object sender, EventArgs e)
+        {
+            GerirUsuarios gerirUsuarios = new GerirUsuarios(); 
+            gerirUsuarios.ShowDialog();
         }
 
         // FIM DA AREA DO MENU LATERAL ----------------------------------------------------------------
@@ -372,7 +373,6 @@ namespace Pim3Semestre
             chat.ShowDialog();
         }
 
-
         private void CarregarChamados()
         {
             panelListaChamados.Controls.Clear();
@@ -424,6 +424,9 @@ namespace Pim3Semestre
                                 Margin = new Padding(9)
                             };
 
+                            int cardWidth = novoCard.Width;
+                            int padding = 10;
+
                             Label lblTitulo = new Label
                             {
                                 Text = $"{titulo} - #{idChamado}",
@@ -432,28 +435,41 @@ namespace Pim3Semestre
                                 AutoSize = true
                             };
 
-                            Label lblStatus = new Label
-                            {
-                                Text = "Status: " + statusTexto,
-                                Location = new Point(10, 30),
-                                AutoSize = true
-                            };
-
                             Label lblMotivo = new Label
                             {
                                 Text = "Motivo: " + motivo,
-                                Location = new Point(10, 50),
+                                Location = new Point(10, 30),
                                 AutoSize = true
                             };
 
                             Label lblPrioridade = new Label
                             {
                                 Text = "Prioridade: " + prioridadeTexto,
-                                Location = new Point(10, 70),
+                                Location = new Point(10, 50),
                                 AutoSize = true
                             };
 
-                            int yOffset = 90;
+                            Label lblStatus = new Label
+                            {
+                                Text = "Status: " + statusTexto,
+                                Location = new Point(cardWidth - 100 - padding, padding),
+                                AutoSize = true
+                            };
+
+                            Button btnAcao = new Button
+                            {
+                                Text = usuario.Cargo == "usuario" ? "Visualizar" : "Resolver",
+                                Width = 100,
+                                Tag = idChamado,
+                                Location = new Point(cardWidth - 100 - padding, padding + 20)
+                            };
+
+                            if (usuario.Cargo == "usuario")
+                                btnAcao.Click += VisualizarChamado;
+                            else
+                                btnAcao.Click += ResolverChamado;
+
+                            int yOffset = 70;
 
                             if (!string.IsNullOrWhiteSpace(descricao))
                             {
@@ -479,24 +495,10 @@ namespace Pim3Semestre
                                 yOffset += lblCriador.Height + 10;
                             }
 
-                            Button btnAcao = new Button
-                            {
-                                Text = usuario.Cargo == "usuario" ? "Visualizar" : "Resolver",
-                                Location = new Point(10, yOffset),
-                                Tag = idChamado,
-                                Width = 100
-                            };
-
-                            if (usuario.Cargo == "usuario")
-                                btnAcao.Click += VisualizarChamado;
-                            else
-                                btnAcao.Click += ResolverChamado;
-
-                            // Adiciona os controles ao card
                             novoCard.Controls.Add(lblTitulo);
-                            novoCard.Controls.Add(lblStatus);
                             novoCard.Controls.Add(lblMotivo);
                             novoCard.Controls.Add(lblPrioridade);
+                            novoCard.Controls.Add(lblStatus);
                             novoCard.Controls.Add(btnAcao);
 
                             panelListaChamados.Controls.Add(novoCard);
@@ -507,11 +509,16 @@ namespace Pim3Semestre
             }
         }
 
-
-
         private void PaginaOcultaChamados_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void txbxNomeUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

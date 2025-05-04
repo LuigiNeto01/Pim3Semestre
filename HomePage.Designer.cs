@@ -40,6 +40,10 @@
             Inicio = new TabPage();
             tabEditarPerfil = new TabPage();
             panel2 = new Panel();
+            label10 = new Label();
+            label9 = new Label();
+            label8 = new Label();
+            label7 = new Label();
             label1 = new Label();
             btnSalvar = new Button();
             txbxCPF = new MaskedTextBox();
@@ -59,7 +63,6 @@
             txbxDescr = new TextBox();
             lblDescr = new Label();
             txbxTitulo = new TextBox();
-            Titulo = new Label();
             label3 = new Label();
             label2 = new Label();
             comboBox1 = new ComboBox();
@@ -72,10 +75,7 @@
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
-            label7 = new Label();
-            label8 = new Label();
-            label9 = new Label();
-            label10 = new Label();
+            Titulo = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabControl1.SuspendLayout();
@@ -163,8 +163,9 @@
             BtnCriarUsuario.Name = "BtnCriarUsuario";
             BtnCriarUsuario.Size = new Size(260, 44);
             BtnCriarUsuario.TabIndex = 2;
-            BtnCriarUsuario.Text = "Criar usuário";
+            BtnCriarUsuario.Text = "Gerir usuários";
             BtnCriarUsuario.UseVisualStyleBackColor = false;
+            BtnCriarUsuario.Click += BtnCriarUsuario_Click;
             // 
             // button2
             // 
@@ -241,6 +242,46 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(399, 508);
             panel2.TabIndex = 1;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.Location = new Point(30, 315);
+            label10.Name = "label10";
+            label10.Size = new Size(37, 21);
+            label10.TabIndex = 10;
+            label10.Text = "CPF";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Location = new Point(30, 244);
+            label9.Name = "label9";
+            label9.Size = new Size(48, 21);
+            label9.TabIndex = 9;
+            label9.Text = "Email";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Location = new Point(30, 180);
+            label8.Name = "label8";
+            label8.Size = new Size(53, 21);
+            label8.TabIndex = 8;
+            label8.Text = "Senha";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(30, 115);
+            label7.Name = "label7";
+            label7.Size = new Size(53, 21);
+            label7.TabIndex = 7;
+            label7.Text = "Nome";
             // 
             // label1
             // 
@@ -370,7 +411,6 @@
             panel3.Controls.Add(txbxDescr);
             panel3.Controls.Add(lblDescr);
             panel3.Controls.Add(txbxTitulo);
-            panel3.Controls.Add(Titulo);
             panel3.Controls.Add(label3);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(comboBox1);
@@ -439,16 +479,6 @@
             txbxTitulo.Size = new Size(299, 23);
             txbxTitulo.TabIndex = 4;
             // 
-            // Titulo
-            // 
-            Titulo.AutoSize = true;
-            Titulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Titulo.Location = new Point(70, 98);
-            Titulo.Name = "Titulo";
-            Titulo.Size = new Size(64, 25);
-            Titulo.TabIndex = 3;
-            Titulo.Text = "Titulo";
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -514,7 +544,7 @@
             cardTemplate.BackColor = SystemColors.ScrollBar;
             cardTemplate.Location = new Point(3, 3);
             cardTemplate.Name = "cardTemplate";
-            cardTemplate.Size = new Size(890, 153);
+            cardTemplate.Size = new Size(890, 119);
             cardTemplate.TabIndex = 6;
             cardTemplate.Visible = false;
             // 
@@ -578,45 +608,12 @@
             label4.TabIndex = 0;
             label4.Text = "Chamados Fechados";
             // 
-            // label7
+            // Titulo
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(30, 115);
-            label7.Name = "label7";
-            label7.Size = new Size(53, 21);
-            label7.TabIndex = 7;
-            label7.Text = "Nome";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(30, 180);
-            label8.Name = "label8";
-            label8.Size = new Size(53, 21);
-            label8.TabIndex = 8;
-            label8.Text = "Senha";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(30, 244);
-            label9.Name = "label9";
-            label9.Size = new Size(48, 21);
-            label9.TabIndex = 9;
-            label9.Text = "Email";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(30, 315);
-            label10.Name = "label10";
-            label10.Size = new Size(37, 21);
-            label10.TabIndex = 10;
-            label10.Text = "CPF";
+            Titulo.Location = new Point(0, 0);
+            Titulo.Name = "Titulo";
+            Titulo.Size = new Size(100, 23);
+            Titulo.TabIndex = 0;
             // 
             // HomePage
             // 

@@ -100,6 +100,43 @@ namespace Pim3Semestre.util
     INNER JOIN ""user"" u ON u.id = chamados.id_usuario_criador
     ORDER BY data_criacao DESC;
 ";
+
+            public const string CarregarMensagens = @"
+        SELECT m.mensagem, m.data_envio, u.nome, u.id AS remetente_id
+        FROM mensagens_chat m
+        INNER JOIN ""user"" u ON u.id = m.id_usuario
+        WHERE m.id_chamado = @idChamado
+        ORDER BY m.data_envio ASC";
+
+            public const string CarregarStatus = "SELECT resolvido FROM chamados WHERE id = @id";
+
+            public const string EnviarMensagem = @"INSERT INTO mensagens_chat (id_chamado, id_usuario, mensagem, data_envio) 
+                     VALUES (@idChamado, @idUsuario, @mensagem, @data)";
+
+            public const string FecharChamado = @"UPDATE chamados 
+           SET resolvido = TRUE, 
+               id_usuario_resolvedor = @resolvidoPor, 
+               data_resolucao = @data 
+           WHERE id = @id";
+
+            public const string ReabrirChamado = @"UPDATE chamados 
+           SET resolvido = FALSE, 
+               id_usuario_resolvedor = NULL, 
+               data_resolucao = NULL 
+           WHERE id = @id";
+
+            public const string AtualizarUsuario = @"
+                            UPDATE ""user""
+                            SET nome = @nome,
+                                email = @email,
+                                cpf = @cpf,
+                                cargo = @cargo,
+                                nivel = @nivel
+                            WHERE id = @id";
+
+            public const string DeletarUsuario = @"DELETE FROM ""user"" WHERE id = @id";
+
+            public const string PuxarDado = @"SELECT id, nome, email, cpf, cargo, nivel FROM ""user"" ORDER BY nome";
         }
     }
 }
