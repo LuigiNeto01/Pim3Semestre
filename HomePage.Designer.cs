@@ -418,7 +418,7 @@
             // 
             lblChamadosCriticos.AutoSize = true;
             lblChamadosCriticos.Font = new Font("Segoe UI Black", 26.25F, FontStyle.Bold);
-            lblChamadosCriticos.Location = new Point(505, 44);
+            lblChamadosCriticos.Location = new Point(800, 44);
             lblChamadosCriticos.Name = "lblChamadosCriticos";
             lblChamadosCriticos.Size = new Size(58, 47);
             lblChamadosCriticos.TabIndex = 5;
@@ -428,7 +428,7 @@
             // 
             lblChamadosAbertos.AutoSize = true;
             lblChamadosAbertos.Font = new Font("Segoe UI Black", 26.25F, FontStyle.Bold);
-            lblChamadosAbertos.Location = new Point(313, 44);
+            lblChamadosAbertos.Location = new Point(442, 44);
             lblChamadosAbertos.Name = "lblChamadosAbertos";
             lblChamadosAbertos.Size = new Size(58, 47);
             lblChamadosAbertos.TabIndex = 4;
@@ -448,7 +448,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
-            label6.Location = new Point(440, 19);
+            label6.Location = new Point(735, 19);
             label6.Name = "label6";
             label6.Size = new Size(175, 25);
             label6.TabIndex = 2;
@@ -458,7 +458,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
-            label5.Location = new Point(249, 19);
+            label5.Location = new Point(378, 19);
             label5.Name = "label5";
             label5.Size = new Size(180, 25);
             label5.TabIndex = 1;

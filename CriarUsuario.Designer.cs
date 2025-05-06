@@ -178,6 +178,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "CriarUsuario";
             Text = "CriarUsuario";
             Load += CriarUsuario_Load_1;

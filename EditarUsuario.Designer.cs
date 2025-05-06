@@ -145,6 +145,7 @@
             Controls.Add(txbxEmail);
             Controls.Add(txbxSenha);
             Controls.Add(txbxNomeUsuario);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "EditarUsuario";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
