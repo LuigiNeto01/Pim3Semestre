@@ -5,7 +5,7 @@ namespace Pim3Semestre.util
 {
     internal static class Banco
     {
-        private static readonly string connString = "Host=localhost;Port=5432;Username=postgres;Password=123;Database=Pim;";
+        private static readonly string connString = "Host=localhost;Port=5432;Username=postgres;Password=123;Database=postgres;";
 
         public static NpgsqlConnection AbrirConexao()
         {

@@ -36,7 +36,7 @@ namespace Pim3Semestre
         private void CriarUsuario_Load_1(object sender, EventArgs e)
         {
             // Máscara de CPF
-            txbxCriarCPF.Mask = "000.000.000-00";
+            txbxCriarCPF.Mask = "000\\.000\\.000\\-00";
 
             // Nível só habilitado para Suporte
             txbxCriarNivel.Enabled = false;

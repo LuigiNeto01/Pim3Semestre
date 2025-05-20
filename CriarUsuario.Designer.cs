@@ -107,28 +107,28 @@
             // 
             txbxCriarUser.Location = new Point(25, 83);
             txbxCriarUser.Name = "txbxCriarUser";
-            txbxCriarUser.Size = new Size(370, 23);
+            txbxCriarUser.Size = new Size(412, 23);
             txbxCriarUser.TabIndex = 6;
             // 
             // txbxCriarPass
             // 
             txbxCriarPass.Location = new Point(25, 143);
             txbxCriarPass.Name = "txbxCriarPass";
-            txbxCriarPass.Size = new Size(370, 23);
+            txbxCriarPass.Size = new Size(412, 23);
             txbxCriarPass.TabIndex = 7;
             // 
             // txbxCriarCPF
             // 
             txbxCriarCPF.Location = new Point(25, 209);
             txbxCriarCPF.Name = "txbxCriarCPF";
-            txbxCriarCPF.Size = new Size(370, 23);
+            txbxCriarCPF.Size = new Size(412, 23);
             txbxCriarCPF.TabIndex = 8;
             // 
             // txbxCriarEmail
             // 
             txbxCriarEmail.Location = new Point(25, 272);
             txbxCriarEmail.Name = "txbxCriarEmail";
-            txbxCriarEmail.Size = new Size(370, 23);
+            txbxCriarEmail.Size = new Size(412, 23);
             txbxCriarEmail.TabIndex = 9;
             // 
             // cbbxCargo
@@ -138,7 +138,7 @@
             cbbxCargo.Items.AddRange(new object[] { "usuario", "Suporte", "Admin" });
             cbbxCargo.Location = new Point(25, 338);
             cbbxCargo.Name = "cbbxCargo";
-            cbbxCargo.Size = new Size(370, 23);
+            cbbxCargo.Size = new Size(412, 23);
             cbbxCargo.TabIndex = 10;
             cbbxCargo.SelectedIndexChanged += cbbxCargo_SelectedIndexChanged;
             // 
@@ -147,12 +147,12 @@
             txbxCriarNivel.Enabled = false;
             txbxCriarNivel.Location = new Point(25, 396);
             txbxCriarNivel.Name = "txbxCriarNivel";
-            txbxCriarNivel.Size = new Size(370, 23);
+            txbxCriarNivel.Size = new Size(412, 23);
             txbxCriarNivel.TabIndex = 11;
             // 
             // button1
             // 
-            button1.Location = new Point(298, 462);
+            button1.Location = new Point(340, 500);
             button1.Name = "button1";
             button1.Size = new Size(97, 48);
             button1.TabIndex = 12;

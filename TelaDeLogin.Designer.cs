@@ -74,7 +74,7 @@
             // CPFTxBx
             // 
             CPFTxBx.Location = new Point(46, 418);
-            CPFTxBx.Mask = "000.000.000-00";
+            CPFTxBx.Mask = "000\\.000\\.000\\-00";
             CPFTxBx.Name = "CPFTxBx";
             CPFTxBx.Size = new Size(282, 23);
             CPFTxBx.TabIndex = 4;

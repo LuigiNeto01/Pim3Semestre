@@ -291,7 +291,7 @@ namespace Pim3Semestre
                         cmd.Parameters.AddWithValue("prioridade", prioridade);
                         cmd.Parameters.AddWithValue("data_criacao", DateTime.Now);
                         cmd.Parameters.AddWithValue("resolvido", false);
-                        cmd.Parameters.AddWithValue("id_usuario_criador", usuario.id); // 🔥 Aqui manda o id do usuário logado!
+                        cmd.Parameters.AddWithValue("id_usuario_criador", usuario.id); // Aqui manda o id do usuário logado!
 
 
                         cmd.ExecuteNonQuery();
@@ -481,6 +481,16 @@ namespace Pim3Semestre
         }
 
         private void pnlFiltro_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

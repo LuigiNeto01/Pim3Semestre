@@ -93,7 +93,7 @@
             // txbxCPF
             // 
             txbxCPF.Location = new Point(33, 319);
-            txbxCPF.Mask = "000.000.000-00";
+            txbxCPF.Mask = "000\\.000\\.000\\-00";
             txbxCPF.Name = "txbxCPF";
             txbxCPF.ReadOnly = true;
             txbxCPF.Size = new Size(337, 23);

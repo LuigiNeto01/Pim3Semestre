@@ -18,7 +18,7 @@ namespace Pim3Semestre
         private void Form1_Load(object sender, EventArgs e)
         {
             PassWordTxBx.PasswordChar = '*'; // Senha oculta
-            CPFTxBx.Mask = "000.000.000-00"; // Máscara CPF
+            CPFTxBx.Mask = "000\\.000\\.000\\-00"; // Máscara CPF
         }
 
         private void BtnRegistro_Click(object sender, EventArgs e)
